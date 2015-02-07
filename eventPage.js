@@ -4,7 +4,17 @@ chrome.contextMenus.create({
 	id : '1',
 	"contexts": ["page", "frame", "editable", "image", "link"],
 	"onclick": function handler(info, tab) {
-		// go(tab);
-		alert(info);
+		if (info.mediaType=='image') {
+			str='![图片]('+info.srcUrl+')';
+		}else{
+			str='['+tab.title+']('+tab.url+')';
+		}
+		if (isChrome()) {
+			alert('请复制 '+str);
+			copyToClipboard(str);
+			window.copy("this is a test string");
+		}else{
+			window.clipboardData.setData('text',str);
+		}
 	}
 });
