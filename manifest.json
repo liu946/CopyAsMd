@@ -1,0 +1,29 @@
+{
+	"name": "CopyAsMd",
+	"version": "0.1",
+	"manifest_version":2,
+	"description":"Help to copy a web page or a image as markdown sentence.",
+	"browser_action":{
+		"default_icon":"icon-bitty.png",
+		"default_title": "CopyAsMd",
+		"default_popup": "popup.html"
+	},
+	"permissions":[
+		"contextMenus",
+		"http://*/*"
+	],
+	"icons": {
+    	"16": "icon-bitty.png",
+    	"48": "icon-small.png",
+    	"128": "icon-large.png"
+  	},
+  	"background": {
+  		"scripts": ["eventPage.js"],
+  		"persistent": true
+  	},
+  	"content_scripts": [ {
+  		"js": [ "menu.js" ],
+  		"all_frames": false,
+      	"matches": [ "http://*/*", "https://*/*", "ftp://*/*", "file:///*" ]
+  		} ]
+}
