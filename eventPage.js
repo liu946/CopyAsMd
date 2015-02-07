@@ -36,18 +36,19 @@
 //grin("'+MdClipBoard+'");'
 //
 //全局变量
-MdClipBoard='';
+var MdClipBoard='';
 chrome.contextMenus.create({
 	"title": "复制",
 	id : '1',
 	"contexts": ["page", "frame", "image", "link"],
 	"onclick": function handler(info, tab) {
+		var str;
 		if (info.mediaType=='image') {
 			str='![图片]('+info.srcUrl+')';
 		}else{
 			str='['+tab.title+']('+tab.url+')';
 		}
-		MdClipBoard+=str;
+		MdClipBoard+=str+'\\n';
 	}
 });
 chrome.contextMenus.create({
@@ -61,3 +62,11 @@ chrome.contextMenus.create({
 		MdClipBoard='';
 	}
 });
+
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
+    if(request.tp =="cb") {
+      sendResponse({cb:MdClipBoard});
+    }
+});
+
+
