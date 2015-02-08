@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
   main_run();  
 });
 function main_run() {
-	var cb = document.getElementById('clipboard');
+	var cb = $('#clipboard');
 	chrome.extension.sendMessage({tp:"cb"},function(response){
-		//alert(response.cb.replace(eval('/c/gi'),'<br>'));
-  		cb.innerHTML=response.cb.replace(/\\n/g,'\n');
+  		cb.val(response.cb.replace(/\\n/g,'\n'))
+  		cb.select();
 	});
 };
