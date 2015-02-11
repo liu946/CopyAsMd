@@ -1,4 +1,4 @@
-// EventPages.js
+// Background.js
 // author : Micheal Liu
 // date : 2015年02月08日
 // markdown复制插件 · 右键菜单
@@ -65,7 +65,13 @@ chrome.contextMenus.create({
 
 chrome.extension.onMessage.addListener(function(request, sender, sendResponse){
     if(request.tp =="cb") {
-      sendResponse({cb:MdClipBoard});
+      	sendResponse({cb:MdClipBoard});
+    }else if(request.tp=='cp'){
+    	MdClipBoard+=request.urlmd;
+    	sendResponse({cb:MdClipBoard});
+    }else if(request.tp=='clr'){
+    	MdClipBoard='';
+    	sendResponse({cb:MdClipBoard});    	
     }
 });
 

@@ -19,11 +19,11 @@
     	"128": "icon-large.png"
   	},
   	"background": {
-  		"scripts": ["eventPage.js"],
+  		"scripts": ["Background.js"],
   		"persistent": true
   	},
   	"content_scripts": [ {
-  		"js": [ "menu.js" ],
+  		"js": [ "contentScripts.js" ],
   		"all_frames": false,
       	"matches": [ "http://*/*", "https://*/*", "ftp://*/*", "file:///*" ]
   		} ]
