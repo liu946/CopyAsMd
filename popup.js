@@ -6,6 +6,7 @@ function main_run() {
 	cb = $('#clipboard');
 	chrome.extension.sendMessage({tp:"cb"},function(response){
   		cb.val(response.cb.replace(/\\n/g,'\n'))
+  		cb.focus();
   		cb.select();
 	});
 	$('#copylink').click(copythisurl);

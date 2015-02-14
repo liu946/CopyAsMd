@@ -23,8 +23,8 @@
   		"persistent": true
   	},
   	"content_scripts": [ {
-  		"js": [ "contentScripts.js" ],
-  		"all_frames": false,
+  		"js": [ "contentScripts.js","jquery-1.8.3.min.js" ],
+  		"all_frames": true,
       	"matches": [ "http://*/*", "https://*/*", "ftp://*/*", "file:///*" ]
   		} ]
 }

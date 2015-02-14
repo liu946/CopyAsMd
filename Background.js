@@ -10,6 +10,8 @@
 // function grin(tag) { 
 //         var myField; 
 //         myField = document.activeElement;
+//         myField.val(myField.val()+tag)
+//         return;
 //         if (document.selection) { 
 //                 myField.focus(); 
 //                 sel = document.selection.createRange(); 
@@ -33,7 +35,7 @@
 //                 myField.focus(); 
 //         } 
 // } 
-//grin("'+MdClipBoard+'");'
+//grin('+MdClipBoard+');
 //
 //全局变量
 var MdClipBoard='';
@@ -56,8 +58,15 @@ chrome.contextMenus.create({
 	id : '2',
 	"contexts": ["editable"],
 	"onclick": function handler(info, tab) {
+		if(tab.url.substr(0,18)=='https://trello.com'){
+			chrome.tabs.executeScript({
+				code:"$('.card-detail-edit textarea').val($('.card-detail-edit textarea').val()+'"+MdClipBoard+"')"
+			})
+			return;
+		}
+
 		chrome.tabs.executeScript({
-			code: 'function grin(tag) { var myField; myField = document.activeElement; if (document.selection) {  myField.focus();  sel = document.selection.createRange();  sel.text = tag;  myField.focus();  } else if (myField.selectionStart || myField.selectionStart == "0") {  var startPos = myField.selectionStart;  var endPos = myField.selectionEnd;  var cursorPos = endPos;  myField.value = myField.value.substring(0, startPos)  + tag  + myField.value.substring(endPos, myField.value.length);  cursorPos += tag.length;  myField.focus();  myField.selectionStart = cursorPos;  myField.selectionEnd = cursorPos;  }  else {  myField.value += tag;  myField.focus();  } }; grin("'+MdClipBoard+'");'
+			code: 'function grin(tag){var myField;myField=$(":focus");myField.val(myField.val()+tag);return;} grin("'+MdClipBoard+'");'
 		});
 		MdClipBoard='';
 	}
