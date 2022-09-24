@@ -3,27 +3,60 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>Document</title>
-	<script type="text/javascript" src='jquery-1.8.3.min.js'></script>
+	<script type="text/javascript" src="clipboard.min.js"></script>
 	<script type="text/javascript" src='popup.js'></script>
 </head>
 <body>
-<style type="text/css">
-div{
-	width: 120px;
-}
-li{
-	list-style-type:none;
-}
-</style>
-<div><span>
-		<li> <button id='copylink'>复制本页链接</button> </li>
-	</span></div>
-<div><span>
-		<li><button id='clearcb'>清除剪贴板</button></li>
-	</span></div>
-<div><span>
-		<li><button id='about'>关于</button></li>
-	</span></div>
-	<textarea id='clipboard'></textarea>
+	<style type="text/css">
+		textarea {
+			word-wrap: normal;
+			white-space: nowrap;
+			width: 400px;
+			height: 200px;
+			font-family: "Microsoft YaHei UI", serif;
+			min-height: 100px;
+			line-height: 20px;
+			padding: 6px 10px;
+			resize: vertical;
+			display: block;
+			border-width: 1px;
+			border-style: solid;
+			background-color: #fff;
+			border-radius: 2px;
+			margin-bottom: 5px;
+		}
+		textarea:hover {
+			border-color: #D2D2D2!important;
+		}
+		button {
+			margin: 0 7px 0 0;
+			height: 30px;
+			line-height: 30px;
+			padding: 0 10px;
+			font-size: 12px;
+			display: inline-block;
+			background-color: #009688;
+			color: #fff;
+			white-space: nowrap;
+			text-align: center;
+			border: none;
+			border-radius: 2px;
+			cursor: pointer;
+			vertical-align: middle;
+		}
+		button:hover {
+			opacity: .8;
+			filter: alpha(opacity=80);
+			color: #fff;
+		}
+	</style>
+	<textarea id='clipboard' cols="30"></textarea>
+	<button id="copy-raw" data-clipboard-target="#clipboard" class="btn">COPY !</button>
+<!--	<button id="copy-ul" data-clipboard-target="#clipboard">CP -</button>-->
+<!--	<button id="copy-nl" data-clipboard-target="#clipboard">CP N.</button>-->
+	<button id='copy-this-url'>复制本页链接</button>
+	<button id='copy-all-url'>复制全部链接</button>
+	<button id='clear-clipboard'>清除剪贴板</button>
+	<button id='open-about-link' style="float: right; margin-right: 0;">关于</button>
 </body>
 </html>

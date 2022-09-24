@@ -11,7 +11,9 @@
 	"permissions":[
 		"contextMenus",
 		"http://*/*",
-		"tabs"
+		"https://*/*",
+		"tabs",
+		"storage"
 	],
 	"icons": {
     	"16": "icon-bitty.png",
@@ -22,9 +24,11 @@
   		"scripts": ["Background.js"],
   		"persistent": true
   	},
-  	"content_scripts": [ {
-  		"js": [ "contentScripts.js","jquery-1.8.3.min.js" ],
-  		"all_frames": true,
-      	"matches": [ "http://*/*", "https://*/*", "ftp://*/*", "file:///*" ]
-  		} ]
+  	"content_scripts": [
+		{
+			"js": [ "contentScripts.js","jquery-1.8.3.min.js" ],
+			"all_frames": true,
+			"matches": [ "http://*/*", "https://*/*", "ftp://*/*", "file:///*" ]
+  		}
+	]
 }
